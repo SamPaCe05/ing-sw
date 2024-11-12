@@ -4,7 +4,6 @@ import FormSignin from "./components/FormSignin";
 import HomeUser from  "./Pages/HomeUser"
 import Navbar from "./components/Navbar"
 import FormSignup from "./components/FormSignup";
-import IndexNav from "./components/IndexNav"
 import { auth } from "./firebase/firebaseconfig";
 import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
 
@@ -59,8 +58,6 @@ function App() {
       
       <Routes>
         <Route path="/home" element={<Navbar user={userDetails}/>}>
-          <Route index element={<HomeUser/>}></Route>
-          <Route index element={<indexNav user={userDetails}/>}></Route>
         </Route>
         <Route path="/signin" element={user ? <Navigate to={"/home"} /> : <FormSignin />} />
         <Route path="/signup" element={<FormSignup />} />

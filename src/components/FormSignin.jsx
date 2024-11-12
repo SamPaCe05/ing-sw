@@ -54,7 +54,7 @@ export default function FormSignin() {
   async function onSubmit(values) {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      window.location.href = "/homeUser";
+      window.location.href = "/home";
       toast.success("Iniciando Sesión", {
         position: "top-center",
       });
