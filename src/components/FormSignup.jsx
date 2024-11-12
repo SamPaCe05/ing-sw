@@ -2,12 +2,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Link } from "react-router-dom"
-
 import { appFirebase } from "../firebase/firebaseconfig"
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 const auth = getAuth(appFirebase)
 import { getFirestore, setDoc, doc } from 'firebase/firestore'
-
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Button } from "@/components/ui/button"
@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-import { toast } from 'react-toastify';
 
 const formSchema = z.object({
   username: z
@@ -46,6 +45,7 @@ const formSchema = z.object({
 })
 
 export default function FormSignup() {
+  const navigate = useNavigate();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -68,18 +68,19 @@ export default function FormSignup() {
   async function registrarUsuario(values) {
     try {
       const userCredencial = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      console.log("holaaa")
       console.log(userCredencial);
 
       const docRef = doc(fireStore, `/usuarios/${userCredencial.user.uid}`);
       await setDoc(docRef, { correo: values.email, username: values.username, rol: values.rol });
-
+      
       toast.success('Usuario Registrado', {
         position: "top-right",
         autoClose: 2000
 
       });
 
-      return userCredencial;
+      return navigate("/home");
     } catch (error) {
       toast.error(`Correo Electronico en Uso`, {
         position: "top-right",
