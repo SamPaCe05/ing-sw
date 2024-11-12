@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Home from "../Pages/HomeUser";
 import "./Navbar.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import CreateClass from "./CreateClass";
+import { CreateClass } from "@/components/CreateClass";
 import {
     Avatar,
     AvatarFallback,
