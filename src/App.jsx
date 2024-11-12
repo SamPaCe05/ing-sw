@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar"
 import FormSignup from "./components/FormSignup";
 import { ThemeProvider } from "./components/theme-provider";
 import { auth } from "./firebase/firebaseconfig";
+import CreateClass from "./components/CreateClass"
 import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
 
 function App() {
@@ -64,7 +65,9 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Navbar user={userDetails}/>}></Route>
+        <Route path="/home" element={<Navbar user={userDetails}/>}>
+         <Route path="/home/createclass" element={<CreateClass user={userDetails}/>}></Route>
+        </Route>
         <Route path="/signin" element={<FormSignin />} />
         <Route path="/signup" element={<FormSignup />} />
       </Routes>

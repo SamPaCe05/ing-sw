@@ -7,6 +7,9 @@
       "index home";
     height: 100vh;
 }
+.tcst{
+    color: rgba(67, 143, 241, 0.6);
+}
 
 .Avatar {
     margin-left: auto;

@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Home from "../Pages/HomeUser";
 import "./Navbar.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import CreateClass from "./CreateClass";
 import {
     Avatar,
     AvatarFallback,
@@ -16,6 +18,7 @@ import {
     DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 import {
+    BadgePlus,
     House,
     Cloud,
     CreditCard,
@@ -28,6 +31,7 @@ import {
     Plus,
     PlusCircle,
     Settings,
+    ChartLine,
     User,
     UserPlus,
     Users,
@@ -35,8 +39,11 @@ import {
     Presentation,
   } from "lucide-react"
 function Navbar({ user }) {
+    const navigate = useNavigate();
+    const location = useLocation();
     const avatarSrc = user && user.img ? user.img : '';  
     const rolUser = user && user.rol ? user.rol : "value"
+    console.log(location)
     return (
         <div className="navbar-container">
             <div className="Navbar">
@@ -94,12 +101,50 @@ function Navbar({ user }) {
                         )}
                     </li>
                     <DropdownMenuSeparator className="separator"/>
-                    <li></li>
+                    {rolUser=="docente" && (
+                        <DropdownMenuLabel className="tcst">Opciones De Profesor</DropdownMenuLabel>
+                    )}
+                    {rolUser=="user" && (
+                        <DropdownMenuLabel className="tcst">Opciones De Estudiante</DropdownMenuLabel>
+                    )}
+                    {rolUser=="user"&&(
+                        <li className="presentation-item">
+                            <ChartLine />
+                            <button className="button-index"> VIEW STATS</button>
+                        </li>
+                    )} 
+                    {rolUser === "docente" && (
+                        
+                        <li className="presentation-item">
+                            <BadgePlus />
+                            <button className="button-index">ADD PROBLEM</button>
+                        </li>
+                    )}
+                    {rolUser === "docente" && (
+                        
+                        <li className="presentation-item">
+                            <BadgePlus />
+                            <button
+                            className="button-index"
+                            onClick={() => navigate("/home/createclass")}
+                            >
+                            CREATE CLASS
+                           </button>
+
+                        </li>
+                    )}
+                    <DropdownMenuSeparator className="separator"/>
+
                     <li></li>
                 </ul>
             </div>
             <div className="homeinfo">
-                <Home />
+                {location.pathname=="/home" &&(
+                    <Home/>
+                )}
+                {location.pathname=="/home/createclass" &&(
+                    <CreateClass/>
+                )}
             </div>
             <Outlet />
         </div>
