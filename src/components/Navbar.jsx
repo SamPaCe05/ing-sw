@@ -89,7 +89,11 @@ function Navbar({ user }) {
                 <ul>
                     <li className="presentation-item">
                         <House/>
-                        <button className="button-index">Home</button>
+                        <button 
+                        onClick={() => navigate("/home")}
+                        className="button-index">
+                            Home
+                        </button>
                     </li>
                     <DropdownMenuSeparator className="separator"/>
                     <li className="presentation-item">
@@ -138,14 +142,14 @@ function Navbar({ user }) {
                     <li></li>
                 </ul>
             </div>
-            <div className="homeinfo">
                 {location.pathname=="/home" &&(
                     <Home/>
                 )}
                 {location.pathname=="/home/createclass" &&(
-                    <CreateClass/>
+                    <div className="createClass">
+                        <CreateClass/>
+                    </div>
                 )}
-            </div>
             <Outlet />
         </div>
     );

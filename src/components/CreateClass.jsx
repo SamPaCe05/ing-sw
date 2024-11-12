@@ -41,7 +41,7 @@ export function CreateClass() {
           classes: arrayUnion(docRef.id) 
         });
         
-        setMensaje(`El ID de la clase se ha agregado al usuario con UID: ${user.uid}`);
+        setMensaje(`Clase creada con exito`);
         setAlertType("success");
         setOk(true);
       } else {

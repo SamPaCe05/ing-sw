@@ -88,7 +88,8 @@
     padding: 0; 
 }
 
-.homeinfo {
+
+.createClass {
     grid-area: home;
     display: flex;
     justify-content: center;

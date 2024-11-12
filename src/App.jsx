@@ -29,7 +29,6 @@ function App() {
         if (docSnapShot.exists()) {
           const userDetails = docSnapShot.data();
           setUserDetails(userDetails);
-          // Guardar en localStorage
           localStorage.setItem("userDetails", JSON.stringify(userDetails));
         } else {
           console.log("No such document!");
