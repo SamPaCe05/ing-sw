@@ -20,6 +20,7 @@ import {
     DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 import {
+    UserRoundPlus,
     BadgePlus,
     House,
     Cloud,
@@ -128,6 +129,17 @@ function Navbar({ user }) {
                             onClick={()=> navigate("/home/addproblem")}
                             className="button-index">
                                 ADD PROBLEM
+                            </button>
+                        </li>
+                    )}
+                     {rolUser === "docente" && (
+                        
+                        <li className="presentation-item">
+                            <UserRoundPlus />
+                            <button 
+                            onClick={()=> navigate("/home/addproblem")}
+                            className="button-index">
+                                ADD STUDENT
                             </button>
                         </li>
                     )}

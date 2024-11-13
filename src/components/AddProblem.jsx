@@ -85,6 +85,7 @@ export function AddProblem({userDetails}) {
                     }));
                     setClases(clasesData);
                 } catch (error) {
+                    
                     console.error("Error al obtener las clases:", error);
                 }
             }
@@ -116,12 +117,15 @@ export function AddProblem({userDetails}) {
                 await updateDoc(doc(fireStore, "classes", classId), {
                     problemas: arrayUnion(newProblem), 
                 });
-                console.log("Problema agregado con éxito a la clase:", className);
+                setMensaje("Problema agregado con exito a la clase ");
+                setAlertType("success")
             }else{
-                console.log("Clase no encontrada con ese nombre.");
+                setMensaje("No se encontro una clase activa o existente.");
+                setAlertType("error");
             }
         }catch(error){
-            console.error("Error al agregar el problema:", error);
+            setMensaje("Error al agregar problema ->" ,error)
+            setAlertType("warning");
         }
         setClassName("")
         setProblemName("")
@@ -131,6 +135,7 @@ export function AddProblem({userDetails}) {
         setInputExample("")
         setOutputExample("")
         setTestCases("")
+        setOk(true);
     };
 
     return (
@@ -157,8 +162,8 @@ export function AddProblem({userDetails}) {
                             <div className="flex flex-col space-y-1.5">
                                 <Label className="text-center mb-3 mt-4" htmlFor="framework">Seleccione una clase para agregar el problema</Label>
                                 <Select 
-                                    value={className}  // Usamos el valor del estado className
-                                    onValueChange={(value) => setClassName(value)}  // Actualizamos el valor del select
+                                    value={className}  
+                                    onValueChange={(value) => setClassName(value)}  
                                 >
                                     <SelectTrigger className="w-[30%] mx-auto" id="framework">
                                         <SelectValue placeholder="Seleccione una clase" />
@@ -243,6 +248,13 @@ export function AddProblem({userDetails}) {
                     <Button onClick={() => navigate("/home")} variant="outline">Cancelar</Button>
                     <Button onClick={handleAddProblem}>Agregar</Button>
                 </CardFooter>
+                {ok && (
+                <div className="mt-4 transition-transform transform duration-500 ease-in-out translate-y-4">
+                <Alert severity={alertType} onClose={() => setOk(false)}>
+                    {mensaje}
+                </Alert>
+                </div>
+            )}
             </Card>
         </>
     );
