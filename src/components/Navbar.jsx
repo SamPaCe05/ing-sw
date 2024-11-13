@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Home from "../Pages/HomeUser";
 import "./Navbar.css";
+import { AddProblem } from "./AddProblem";
 import MisClases from "./MisClases"
 import { useNavigate, useLocation } from "react-router-dom";
 import { CreateClass } from "@/components/CreateClass";
@@ -123,7 +124,11 @@ function Navbar({ user }) {
                         
                         <li className="presentation-item">
                             <BadgePlus />
-                            <button className="button-index">ADD PROBLEM</button>
+                            <button 
+                            onClick={()=> navigate("/home/addproblem")}
+                            className="button-index">
+                                ADD PROBLEM
+                            </button>
                         </li>
                     )}
                     {rolUser === "docente" && (
@@ -155,6 +160,11 @@ function Navbar({ user }) {
                 {location.pathname=="/home/misclases" &&(
                     <div className="misclases">
                         <MisClases user={user}/>
+                    </div>
+                )}
+                {location.pathname=="/home/addproblem" &&(
+                    <div className="addproblem">
+                        <AddProblem userDetails={user}/>
                     </div>
                 )}
             <Outlet />

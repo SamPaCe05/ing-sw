@@ -97,6 +97,14 @@
     height: 100%; 
     padding: 20px; 
 }
+.addproblem{
+    grid-area: home;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%; 
+    padding: 20px; 
+}
 
 .presentation-item {
     padding-left: 15px;

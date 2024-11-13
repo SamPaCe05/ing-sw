@@ -67,7 +67,7 @@ function App() {
         <Route path="/home" element={<Navbar user={userDetails}/>}>
          <Route path="/home/createclass"></Route>
          <Route path="/home/misclases"></Route>
-
+         <Route path="/home/addproblem"></Route>
         </Route>
         <Route path="/signin" element={<FormSignin />} />
         <Route path="/signup" element={<FormSignup />} />
