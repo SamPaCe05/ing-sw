@@ -1,6 +1,6 @@
 import "./MisClases.css"
 import React, { useEffect, useState } from 'react';
-import CardClass from "./CardClase.jsx"
+import CardClass from "./ActionAreaCard.jsx"
 import { collection, getDocs, query, where} from "firebase/firestore";
 import { fireStore } from "../firebase/firebaseconfig";
 const MisClases = ({user}) => {
@@ -18,7 +18,7 @@ const MisClases = ({user}) => {
               const querySnapshot = await getDocs(clasesQuery);
               const clasesData = querySnapshot.docs.map(doc => ({
                 id: doc.id,
-                ...doc.data()
+                ...doc.data(),
               }));
     
               setClases(clasesData);
@@ -32,11 +32,10 @@ const MisClases = ({user}) => {
         console.log(clases)
       }, [user]);
   return (
-    <div>
-        
+    <div className="MisClases-card">
       {clases.length > 0 ? (
         clases.map((clase) => (
-          <h1>{clase.name}</h1>
+          <CardClass nombreClase={clase.name} fechaCreacion={clase.createdAt} />
         ))
       ) : (
         <p>No tienes clases activas.</p>

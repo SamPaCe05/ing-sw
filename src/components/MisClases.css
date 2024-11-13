@@ -3,3 +3,17 @@
   font-weight: 400;
   font-style: normal;
 }
+.MisClases-card {
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+    padding-top: 30px;
+    gap: 50px;
+    flex-wrap: wrap; 
+    justify-content: flex-start; 
+}
+
+.MisClases-card .card-item { 
+    max-width: 300px; 
+    width: 100%;
+}
