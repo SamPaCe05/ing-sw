@@ -5,6 +5,7 @@ import { AddProblem } from "./AddProblem";
 import MisClases from "./MisClases"
 import { useNavigate, useLocation } from "react-router-dom";
 import { CreateClass } from "@/components/CreateClass";
+import { Addstudent } from "./Addstudent";
 import {
     Avatar,
     AvatarFallback,
@@ -137,7 +138,7 @@ function Navbar({ user }) {
                         <li className="presentation-item">
                             <UserRoundPlus />
                             <button 
-                            onClick={()=> navigate("/home/addproblem")}
+                            onClick={()=> navigate("/home/addstudent")}
                             className="button-index">
                                 ADD STUDENT
                             </button>
@@ -177,6 +178,11 @@ function Navbar({ user }) {
                 {location.pathname=="/home/addproblem" &&(
                     <div className="addproblem">
                         <AddProblem userDetails={user}/>
+                    </div>
+                )}
+                {location.pathname=="/home/addstudent" &&(
+                    <div className="addproblem">
+                        <Addstudent userDetails={user}/>
                     </div>
                 )}
             <Outlet />

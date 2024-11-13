@@ -7,7 +7,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import { auth } from "./firebase/firebaseconfig";
 import { CreateClass } from "@/components/CreateClass";
 import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
-
+import { Addstudent } from "./components/Addstudent";
 function App() {
   const [user, setUser] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
@@ -68,6 +68,8 @@ function App() {
          <Route path="/home/createclass"></Route>
          <Route path="/home/misclases"></Route>
          <Route path="/home/addproblem"></Route>
+         <Route path="/home/addstudent"></Route>
+
         </Route>
         <Route path="/signin" element={<FormSignin />} />
         <Route path="/signup" element={<FormSignup />} />
