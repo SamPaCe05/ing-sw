@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Home from "../Pages/HomeUser";
 import "./Navbar.css";
+import MisClases from "./MisClases"
 import { useNavigate, useLocation } from "react-router-dom";
 import { CreateClass } from "@/components/CreateClass";
 import {
@@ -40,6 +41,7 @@ import {
   } from "lucide-react"
 function Navbar({ user }) {
     const navigate = useNavigate();
+    const username = user && user.username ? user.username : "user";
     const location = useLocation();
     const avatarSrc = user && user.img ? user.img : '';  
     const rolUser = user && user.rol ? user.rol : "value"
@@ -56,7 +58,7 @@ function Navbar({ user }) {
                         </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
-                        <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
+                        <DropdownMenuLabel>Hola, {username}</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
                             <DropdownMenuItem>
@@ -99,7 +101,7 @@ function Navbar({ user }) {
                     <li className="presentation-item">
                         <Presentation/>
                         {rolUser=="docente" ? (
-                            <button className="button-index">Mis Clases</button>
+                            <button className="button-index" onClick={()=> navigate("/home/misclases")}>Mis Clases</button>
                         ) : (
                             <button className="button-index">Clases</button>
                         )}
@@ -147,7 +149,12 @@ function Navbar({ user }) {
                 )}
                 {location.pathname=="/home/createclass" &&(
                     <div className="createClass">
-                        <CreateClass/>
+                        <CreateClass userDetails={user}/>
+                    </div>
+                )}
+                {location.pathname=="/home/misclases" &&(
+                    <div className="misclases">
+                        <MisClases user={user}/>
                     </div>
                 )}
             <Outlet />

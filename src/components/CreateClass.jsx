@@ -8,7 +8,8 @@ import { addDoc, collection, doc, updateDoc, arrayUnion } from "firebase/firesto
 import { Alert } from "@mui/material"; 
 import { getAuth } from "firebase/auth"; 
 
-export function CreateClass() {
+export function CreateClass({userDetails}) {
+  const username = userDetails && userDetails.username ? userDetails.username : "null"
   const [className, setClassName] = React.useState(""); 
   const [mensaje, setMensaje] = React.useState("")
   const [ok, setOk] = React.useState(false);
@@ -19,6 +20,7 @@ export function CreateClass() {
   };
 
   const createClass = async () => {
+    
     if(className==""){
       setAlertType("info");
       setOk(true)
@@ -30,7 +32,9 @@ export function CreateClass() {
 
       const docRef = await addDoc(classCollection, {
         name: className, 
-        createdAt: new Date(), 
+        createdAt: new Date(),
+        profesor: username,
+        state:true,
       });
 
       const auth = getAuth();
@@ -38,9 +42,9 @@ export function CreateClass() {
       if (user) {
         const userDocRef = doc(fireStore, "usuarios", user.uid);
         await updateDoc(userDocRef, {
-          classes: arrayUnion(docRef.id) 
+          classes: arrayUnion(docRef.id),
+          state: true
         });
-        
         setMensaje(`Clase creada con exito`);
         setAlertType("success");
         setOk(true);
@@ -55,7 +59,7 @@ export function CreateClass() {
       setOk(true); 
     }
     
-    
+    setClassName("")
   };
 
   return (
