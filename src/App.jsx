@@ -9,6 +9,7 @@ import { CreateClass } from "@/components/CreateClass";
 import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { Addstudent } from "./components/Addstudent";
 import ClaseDetalle from './components/ClaseDetalle';
+import ViewProblem  from "./components/ViewProblem";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -73,6 +74,8 @@ function App() {
          <Route path="/home/addstudent"></Route>
          <Route path="/home/clases"></Route>
          <Route path="/home/clases/:id" element={<ClaseDetalle />} />
+         <Route path="/home/clases/:id/:problemName" element={<ViewProblem />} />
+
         </Route>
         <Route path="/signin" element={<FormSignin />} />
         <Route path="/signup" element={<FormSignup />} />
