@@ -6,12 +6,12 @@ import Typography from '@mui/material/Typography';
 import { Timestamp } from "firebase/firestore";  
 import CardActionArea from '@mui/material/CardActionArea';
 
-export default function ActionAreaCard({ nombreClase, fechaCreacion }) {
+export default function ActionAreaCard({ nombreClase, fechaCreacion, onClick }) {
   const fecha = Timestamp.fromDate(new Date());
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea onClick={onClick}> 
         <CardMedia
           component="img"
           height="140"
