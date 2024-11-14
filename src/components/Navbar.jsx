@@ -6,6 +6,7 @@ import MisClases from "./MisClases"
 import { useNavigate, useLocation } from "react-router-dom";
 import { CreateClass } from "@/components/CreateClass";
 import { Addstudent } from "./Addstudent";
+import Clases from "./Clases"
 import {
     Avatar,
     AvatarFallback,
@@ -106,7 +107,7 @@ function Navbar({ user }) {
                         {rolUser=="docente" ? (
                             <button className="button-index" onClick={()=> navigate("/home/misclases")}>Mis Clases</button>
                         ) : (
-                            <button className="button-index">Clases</button>
+                            <button onClick={()=>navigate("/home/clases")} className="button-index">Clases</button>
                         )}
                     </li>
                     <DropdownMenuSeparator className="separator"/>
@@ -183,6 +184,11 @@ function Navbar({ user }) {
                 {location.pathname=="/home/addstudent" &&(
                     <div className="addproblem">
                         <Addstudent userDetails={user}/>
+                    </div>
+                )}
+                {location.pathname=="/home/clases" &&(
+                    <div className="misclases">
+                        <Clases user={user}/>
                     </div>
                 )}
             <Outlet />

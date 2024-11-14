@@ -8,6 +8,7 @@ import { auth } from "./firebase/firebaseconfig";
 import { CreateClass } from "@/components/CreateClass";
 import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { Addstudent } from "./components/Addstudent";
+import { ClaseDetalle } from "./components/ClaseDetalle";
 function App() {
   const [user, setUser] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
@@ -69,7 +70,8 @@ function App() {
          <Route path="/home/misclases"></Route>
          <Route path="/home/addproblem"></Route>
          <Route path="/home/addstudent"></Route>
-
+         <Route path="/home/clases"></Route>
+         <Route path="/home/clases/:id" element={<ClaseDetalle />} />
         </Route>
         <Route path="/signin" element={<FormSignin />} />
         <Route path="/signup" element={<FormSignup />} />
